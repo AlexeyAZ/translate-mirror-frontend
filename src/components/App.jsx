@@ -1,39 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { getUsersList } from '../actions/userActions';
+import { store, history } from '../store/store';
 
-// import styles from '../styles/App.module.scss';
+import Routes from './Routes';
 
-class App extends Component {
-  static propTypes = {
-    getUsersList: PropTypes.func,
-  }
-  componentDidMount() {
-    this.props.getUsersList();
-  }
-  
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" render={() => <div>1</div>} />
-      </Switch>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Routes />
+      </ConnectedRouter>
+    </Provider>
+  );
+};
 
-const mapStateToProps = state => {
-  return {
-    ...state
-  }
-}
+App.propTypes = {
+  children: PropTypes.any,
+};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUsersList: () => dispatch(getUsersList())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

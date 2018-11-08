@@ -1,0 +1,10 @@
+.container {
+  composes: containerMaxWidth horizontalGutters from global;
+  margin: 0 auto;
+}
+
+.row {
+  composes: rowNegativeMargins from global;
+  display: flex;
+  flex-wrap: wrap;
+}

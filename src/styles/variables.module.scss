@@ -1,0 +1,28 @@
+$headerHeight: 50px;
+$footerHeight: 50px;
+$containerMaxWidth: 1024px;
+$columns: 24;
+$gutter: 15px;
+
+:global {
+  .headerHeight {
+    height: $headerHeight;
+  }
+
+  .footerHeight {
+    height: $footerHeight;
+  }
+
+  .layoutPaddingTop {
+    padding-top: $headerHeight;
+  }
+
+  .containerMaxWidth {
+    max-width: $containerMaxWidth;
+  }
+
+  .horizontalGutters {
+    padding-left: $gutter;
+    padding-right: $gutter;
+  }
+}

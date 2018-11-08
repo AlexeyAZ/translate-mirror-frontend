@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { HashRouter, BrowserRouter } from 'react-router-dom';
 
 import App from './components/App';
-import Routes from './Routes';
 
 import * as serviceWorker from './serviceWorker';
 
-import './styles/index.css';
+import './styles/global.module.scss';
 
 const Router = ({ children }) => {
   if (process.env.NODE_ENV === 'development') {
@@ -31,7 +30,7 @@ Router.propTypes = {
 
 ReactDOM.render(
   <Router>
-    <Routes />
+    <App />
   </Router>,
   document.getElementById('root')
 );

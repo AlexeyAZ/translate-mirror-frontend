@@ -1,5 +1,5 @@
 const config = {
-  APIURL: 'https://translate-mirror.herokuapp.com/api/'
+  APIURL: 'http://localhost:5000/api/'
 };
 
 export default config;
