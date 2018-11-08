@@ -1,5 +1,9 @@
 const config = {
-  APIURL: 'http://localhost:5000/api/'
+  APIURL: process.env.NODE_ENV === 'production'
+    ?
+      'https://translate-mirror.herokuapp.com/api/'
+    :
+      'http://localhost:5000/api/',
 };
 
 export default config;
