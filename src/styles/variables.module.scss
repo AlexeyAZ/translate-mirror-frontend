@@ -1,8 +1,18 @@
 $headerHeight: 50px;
+$headerZIndex: 10;
+
 $footerHeight: 50px;
+
+$sidebarWidth: 300px;
+$sidebarExpandWidth: 20px;
+$sidebarFullWidth: $sidebarWidth + $sidebarExpandWidth;
+$sidebarZIndex: 10;
+
 $containerMaxWidth: 1024px;
 $columns: 24;
 $gutter: 15px;
+
+$layoutTrans: 0.3s ease;
 
 :global {
   .headerHeight {

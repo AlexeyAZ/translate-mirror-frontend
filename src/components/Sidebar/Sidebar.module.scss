@@ -1,0 +1,33 @@
+@import '../../styles/variables.module.scss';
+
+.sidebar {
+  transition: all $layoutTrans;
+  transform: translateX(-100%);
+  background-color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $sidebarWidth;
+  z-index: $sidebarZIndex;
+}
+
+.header {
+  border: 1px solid black;
+  height: $headerHeight;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.switch {
+  background-color: white;
+  border: 1px solid black;
+  outline: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 100%;
+  width: $sidebarExpandWidth;
+}

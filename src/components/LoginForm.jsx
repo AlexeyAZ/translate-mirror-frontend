@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Switch, Route } from 'react-router-dom';
 
 import Form from './Form';
 import Input from './Input';
 import Button from './Button';
 
-if (process.env.NODE_ENV !== 'production') {
-  const {whyDidYouUpdate} = require('why-did-you-update');
-  whyDidYouUpdate(React);
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   const {whyDidYouUpdate} = require('why-did-you-update');
+//   whyDidYouUpdate(React);
+// }
 
 class LoginForm extends Component {
   static propTypes = {
     users: PropTypes.object,
+    pathname: PropTypes.string,
     createUser: PropTypes.func,
     getUsersList: PropTypes.func,
     userLogin: PropTypes.func,
@@ -50,7 +50,7 @@ class LoginForm extends Component {
 
   onUserLogin = (e) => {
     e.preventDefault();
-    this.props.userLogin({firstName: this.state.firstName, password: this.state.password});
+    this.props.userLogin({firstName: this.state.firstName, password: this.state.password}, this.props.getAuthStatus);
   }
 
   clearState = () => {
@@ -58,20 +58,11 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { users, routerMatch } = this.props;
-    console.log(this.props)
+    const { users, pathname } = this.props;
     return (
       <div>
-        <div>
-          <Link onClick={this.clearState} to='/login'>
-            Login
-          </Link>
-          <Link onClick={this.clearState} to='/register'>
-            Registration
-          </Link>
-        </div>
         {
-          routerMatch.path === '/login' &&
+          pathname !== '/register' &&
             <Form>
               {
                 users.error &&
@@ -97,7 +88,7 @@ class LoginForm extends Component {
             </Form>
         }
         {
-          routerMatch.path === '/register' &&
+          pathname === '/register' &&
             <Form>
               {
                 users.error &&

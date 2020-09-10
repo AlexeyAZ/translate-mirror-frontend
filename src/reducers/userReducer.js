@@ -4,6 +4,10 @@ import {
   GET_USERS_LIST_SUCCESS,
   GET_USERS_LIST_ERROR,
 
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
+
   CREATE_USER_REQUEST,
   CREATE_USER_SUCCESS,
   CREATE_USER_ERROR,
@@ -13,9 +17,11 @@ import {
   USER_LOGIN_ERROR,
 } from '../constants/userConstants';
 
+import config from '../config';
+
 const initialState = {
   rawUsersList: [],
-  // isLogged: Cookie.get('isLogged') ? parseInt(Cookie.get('isLogged')) : 0,
+  selectedUser: null,
   isFetching: false,
   error: null
 };
@@ -25,10 +31,19 @@ export function users(state = initialState, action) {
     case GET_USERS_LIST_REQUEST:
       return {...state, isFetching: true, error: null};
     case GET_USERS_LIST_SUCCESS: {
-      console.log(action.payload)
       return {...state, rawUsersList: action.payload, isFetching: false, error: null}
     }
     case GET_USERS_LIST_ERROR: {
+      const error = action.payload.response ? action.payload.response : action.payload.message;
+      return {...state, error, isFetching: false}
+    }
+    
+    case GET_USER_REQUEST:
+      return {...state, isFetching: true, error: null};
+    case GET_USER_SUCCESS: {
+      return {...state, selectedUser: action.payload, isFetching: false, error: null}
+    }
+    case GET_USER_ERROR: {
       const error = action.payload.response ? action.payload.response : action.payload.message;
       return {...state, error, isFetching: false}
     }
@@ -46,7 +61,7 @@ export function users(state = initialState, action) {
     case USER_LOGIN_REQUEST:
       return {...state, isFetching: true, error: null};
     case USER_LOGIN_SUCCESS: {
-      Cookie.set('sess3', action.payload)
+      Cookie.set(config.AUTH_KEY, action.payload.token)
       return {...state, isFetching: false, error: null}
     }
     case USER_LOGIN_ERROR: {

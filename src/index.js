@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { HashRouter, BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+
+import { store, history } from './store/store';
+
 
 import App from './components/App';
 
@@ -30,7 +35,11 @@ Router.propTypes = {
 
 ReactDOM.render(
   <Router>
-    <App />
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
   </Router>,
   document.getElementById('root')
 );

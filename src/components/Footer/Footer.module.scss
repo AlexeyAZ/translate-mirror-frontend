@@ -1,0 +1,8 @@
+@import '../../styles/variables.module.scss';
+
+.footer {
+  flex-shrink: 0;
+  background-color: white;
+  border: 1px solid black;
+  height: $footerHeight;
+}

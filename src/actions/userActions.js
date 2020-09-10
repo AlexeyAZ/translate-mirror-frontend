@@ -4,6 +4,10 @@ import {
   GET_USERS_LIST_SUCCESS,
   GET_USERS_LIST_ERROR,
 
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
+
   CREATE_USER_REQUEST,
   CREATE_USER_SUCCESS,
   CREATE_USER_ERROR,
@@ -13,14 +17,15 @@ import {
   USER_LOGIN_ERROR,
  } from '../constants/userConstants';
 
- export function userLogin(query) {
+export function userLogin(query, cb) {
   return post({
     url: '/users/login',
     onStart: USER_LOGIN_REQUEST,
     onSuccess: USER_LOGIN_SUCCESS,
     onError: USER_LOGIN_ERROR,
     query,
-  });
+  },
+  cb);
 }
 
 export function getUsersList() {
@@ -35,9 +40,9 @@ export function getUsersList() {
 export function getUser(id) {
   return get({
     url: `/users/${id}`,
-    // onStart: GET_USERS_LIST_REQUEST,
-    // onSuccess: GET_USERS_LIST_SUCCESS,
-    // onError: GET_USERS_LIST_ERROR,
+    onStart: GET_USER_REQUEST,
+    onSuccess: GET_USER_SUCCESS,
+    onError: GET_USER_ERROR,
   });
 }
 

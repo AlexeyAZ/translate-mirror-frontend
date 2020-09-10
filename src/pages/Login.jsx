@@ -8,7 +8,7 @@ import grid from '../styles/grid.module.scss';
 
 const Login = () => {
   return (
-    <Layout showHeader={false}>
+    <Layout>
       <div className={grid.container}>
         <LoginFormContainer />
       </div>

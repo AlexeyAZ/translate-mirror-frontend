@@ -1,10 +1,29 @@
+@import '../styles/variables.module.scss';
+
 .layout {
   composes: layoutPaddingTop from global;
+  transition: padding-left $layoutTrans;
   display: flex;
   flex-flow: column;
+  padding-left: $sidebarExpandWidth;
   height: 100vh;
 }
 
 .content {
   flex-grow: 1;
+}
+
+.sidebarOpen {
+  padding-left: $sidebarFullWidth;
+  :global {
+    .layout {
+      
+    }
+    .header {
+      left: $sidebarFullWidth;
+    }
+    .footer {
+      left: $sidebarFullWidth;
+    }
+  }
 }

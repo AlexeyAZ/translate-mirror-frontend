@@ -6,12 +6,18 @@ class Button extends Component {
     children: PropTypes.any,
     disabled: PropTypes.bool,
     onButtonClick: PropTypes.func,
+    className: PropTypes.any
   };
 
+  onButtonClick = (e) => {
+    e.preventDefault();
+    this.props.onButtonClick(e);
+  }
+
   render() {
-    const {children, onButtonClick, disabled } = this.props;
+    const {children, disabled, className } = this.props;
     return (
-      <button disabled={disabled} onClick={onButtonClick}>
+      <button disabled={disabled} onClick={this.onButtonClick} className={className}>
         {children}
       </button>
     );

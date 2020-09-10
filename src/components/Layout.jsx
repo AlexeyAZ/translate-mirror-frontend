@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import Header from './Header';
-import Footer from './Footer';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 import styles from './Layout.module.scss';
 
-const Layout = props => {
-  console.log(props);
+const Layout = ({ children, showHeader, showFooter, isSidebarOpen }) => {
   return (
-    <div className={styles.layout}>
+    <div className={classNames(styles.layout, { [styles.sidebarOpen]: isSidebarOpen })}>
       {
-        props.showHeader && <Header />
+        showHeader && <Header />
       }
-      <main className={styles.content}>
-        {props.children}
+      <main className={`content ${styles.content}`}>
+        {children}
       </main>
       {
-        props.showFooter && <Footer />
+        showFooter && <Footer />
       }
     </div>
   );
@@ -27,11 +27,12 @@ Layout.propTypes = {
   showHeader: PropTypes.bool,
   showFooter: PropTypes.bool,
   children: PropTypes.any,
+  isSidebarOpen: PropTypes.bool,
 };
 
 Layout.defaultProps = {
   showHeader: true,
-  showFooter: true
+  showFooter: true,
 };
 
 export default Layout;
